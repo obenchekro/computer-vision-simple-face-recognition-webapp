@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <body>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> 
+    <h1>Live streaming</h1>
+    <div>
+        <img src="{{ url_for('camera_import') }}" width="50%"/>
+    </div>
+    <form method="GET" action="/cameratest">
+		<input type="submit" value="Take a snapshot">
+				<div>
+            <img src="{{ url_for('display_image', filename='2a7887d7-56d1-408c-b2aa-f22483314aaf.jpg') }}">
+        </div>
+	</form>
+
+    </body>
+
+
+</html>
