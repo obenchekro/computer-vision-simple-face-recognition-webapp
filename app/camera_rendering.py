@@ -23,7 +23,6 @@ def launch_camera():
             raise Exception("Encoding failed")
             
     camera.release()
-     
     
 def capture(filepath):
     camera = cv2.VideoCapture(0)
