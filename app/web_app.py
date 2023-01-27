@@ -1,5 +1,5 @@
 import os.path
-from flask import Flask, request, redirect, url_for, render_template, flash, send_file, Response
+from flask import Flask, request, redirect, url_for, render_template, flash, Response
 from werkzeug.utils import secure_filename
 import camera_rendering
 
@@ -8,15 +8,18 @@ app = Flask(__name__)
 app.secret_key = "secret key"
 app.config['HOST'] = '127.0.0.9'
 app.config['PORT'] = 8080
-app.config['UPLOAD_FOLDER'] = '/static/uploads'
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 def is_image_file(filename):
    return os.path.splitext(filename)[1].lower() in {'.jpg', '.jpeg', '.png', '.gif'}
 
+def take_picture():
+    return camera_rendering.capture(app.config['UPLOAD_FOLDER'])
+
 @app.route('/choice')
 def choice():
-    return render_template('camera_import.html')
+    return render_template('camera_import_1.html')
 
 @app.route('/camera')
 def camera_display():
@@ -26,9 +29,16 @@ def camera_display():
 def camera_import():
     return Response(camera_rendering.launch_camera(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/cameratest')
-def camera_picture():
-    return send_file(camera_rendering.capture(app.config['UPLOAD_FOLDER']), mimetype='image/jpeg')
+@app.route('/camera_test')
+
+def send_picture():
+    take_picture()
+    paths = [os.path.join(app.config['UPLOAD_FOLDER'], f) for f in os.listdir(app.config['UPLOAD_FOLDER'])]
+    return redirect('display/{}'.format(os.path.basename(max(paths, key=os.path.getmtime))))
+
+@app.route('/camera/picture')
+def display_picture():
+    return render_template('picture.html')
 
 @app.route('/')
 def image_interface():
