@@ -4,7 +4,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <style>
-    /* Ajoutez des styles ici pour améliorer l'apparence de l'en-tête */
 	h1 {
 	color: white;
 	font-family: Helvetica;
@@ -13,7 +12,6 @@
 	text-align: center;
 	margin-bottom: 20px;
 	}
-    /* Ajoutez des styles ici pour améliorer l'apparence du bouton */
     input[type="submit"] {
       padding: 10px 20px;
       font-size: 1.2em;
@@ -23,43 +21,36 @@
       border: none;
       cursor: pointer;
     }
-	
-    /* Ajoutez des styles ici pour l'image de fond */
     body {
-      background-image: url('../static/uploads/face recognition-modified.png'); /* remplacer par le chemin vers l'image */
-      background-size: cover; /* pour adapter la taille de l'image à la taille de la fenêtre */
-      background-position: center; /* pour centrer l'image */
-      background-repeat: no-repeat; /* pour ne pas répéter l'image */
+      background-image: url('../static/uploads/face recognition-modified.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
-    /* Ajoutez des styles ici pour améliorer l'apparence de l'image uploadé */
     img {
-      width: 100%; /* pour que l'image prenne toute la largeur de la page */
-      height: auto; /* pour que l'image s'adapte à sa propre hauteur */
-      margin-top: 20px; /* pour créer un espacement entre l'image et le titre */
+      width: 100%;
+      height: auto;
+      margin-top: 20px;
     }
-    /* Ajoutez des styles ici pour améliorer l'apparence des messages flash */
     ul {
-      list-style-type: none; /* pour enlever les points devant les messages */
-      padding: 0; /* pour enlever l'espacement entre les messages */
+      list-style-type: none;
+      padding: 0;
     }
-
 	li {
-	color: red; /* pour changer la couleur des messages /
-	margin-bottom: 10px; / pour créer un espacement entre les messages */
+	color: red;
+	margin-bottom: 10px;
 		}
 	h2 {
 	color: white;
 	font-family: Helvetica;
 		}
 </style>
-
 </head>
 <body>
   <h1 align="center">Gender and age prediction by computer vision</h1>
   <div class="container">
     <div class="row">
       <h2>Select a file to upload</h2>
-
       <form method="post" action="/send_file" enctype="multipart/form-data">
         <dl>
           <p>
