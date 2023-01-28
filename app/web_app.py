@@ -25,11 +25,11 @@ def choice():
 def camera_display():
     return render_template('camera.html'), 404
 
-@app.route('/camera_import')
+@app.route('/camera-import')
 def camera_import():
     return Response(camera_rendering.launch_camera(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/camera_test')
+@app.route('/camera-test')
 def send_picture():
     take_picture()
     paths = [os.path.join(app.config['UPLOAD_FOLDER'], f) for f in os.listdir(app.config['UPLOAD_FOLDER'])]
@@ -39,11 +39,11 @@ def send_picture():
 def display_picture():
     return render_template('picture.html'), 404
 
-@app.route('/send_file')
+@app.route('/send-file')
 def image_interface():
         return render_template('file.html'), 404
 
-@app.route('/send_file', methods=['GET', 'POST'])
+@app.route('/send-file', methods=['GET', 'POST'])
 def import_image():
     if request.method == 'POST':
         if 'file' not in request.files:
