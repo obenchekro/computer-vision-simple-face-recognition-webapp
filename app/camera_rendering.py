@@ -33,7 +33,6 @@ def capture(filepath):
     if frame is not None and not frame.size == 0:
         cv2.imwrite(os.path.join(os.path.abspath(filepath), filename), frame)
         camera.release()
-        return os.path.join(os.path.abspath(filepath), filename)
     else:
         raise Exception("Invalid image received")
 
