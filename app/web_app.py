@@ -12,25 +12,24 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 def is_image_file(filename):
-   return os.path.splitext(filename)[1].lower() in {'.jpg', '.jpeg', '.png', '.gif'}
+   return os.path.splitext(filename)[1].lower() in {'.jpg', '.jpeg', '.png', '.gif', '.jfif'}
 
 def take_picture():
     return camera_rendering.capture(app.config['UPLOAD_FOLDER'])
 
-@app.route('/choice')
+@app.route('/')
 def choice():
-    return render_template('camera_import_1.html')
+    return render_template('choice.html'), 404
 
 @app.route('/camera')
 def camera_display():
-    return render_template('camera.html')
+    return render_template('camera.html'), 404
 
 @app.route('/camera_import')
 def camera_import():
     return Response(camera_rendering.launch_camera(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/camera_test')
-
 def send_picture():
     take_picture()
     paths = [os.path.join(app.config['UPLOAD_FOLDER'], f) for f in os.listdir(app.config['UPLOAD_FOLDER'])]
@@ -38,13 +37,13 @@ def send_picture():
 
 @app.route('/camera/picture')
 def display_picture():
-    return render_template('picture.html')
+    return render_template('picture.html'), 404
 
-@app.route('/')
+@app.route('/send_file')
 def image_interface():
-        return render_template('index1.html'), 404
+        return render_template('file.html'), 404
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/send_file', methods=['GET', 'POST'])
 def import_image():
     if request.method == 'POST':
         if 'file' not in request.files:
@@ -56,7 +55,7 @@ def import_image():
         if request.files['file'] and is_image_file(request.files['file'].filename):
             request.files['file'].save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(request.files['file'].filename)))
             flash('Image successfully uploaded and displayed below')
-            return render_template('index1.html', filename=secure_filename(request.files['file'].filename))
+            return render_template('file.html', filename=secure_filename(request.files['file'].filename))
         else:
             flash('Allowed image types are - png, jpg, jpeg, gif')
             return redirect(request.url)
