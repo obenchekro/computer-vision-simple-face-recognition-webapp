@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Camera App</title>
+  <style>
+    /* Ajoutez des styles ici pour centrer le contenu de la page */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-image: url('../static/uploads/face recognition-modified.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    h1 {
+      font-size: 2em;
+      font-weight: bold;
+      font-family: Helvetica, sans-serif;
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border-radius: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+	form {
+  display: inline-block;
+}
+	
+  </style>
+</head>
+<body>
+  <h1>Welcome to my Camera App</h1>
+  <div class="container">
+  <form method="GET" action="{{ url_for('import_image') }}">
+    <input type="submit" value="Import an Image">
+  </form>
+  <form method="GET" action="{{ url_for('camera_display') }}">
+  	<input type="submit" value="Capture a Picture">
+  </form>
+  </div>
+</body>
+</html>
+

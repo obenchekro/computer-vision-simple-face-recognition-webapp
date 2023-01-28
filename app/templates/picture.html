@@ -17,7 +17,6 @@
 	text-align: center;
 	margin-bottom: 20px;
 	}
-
 	div {
     display: flex;
     justify-content: center;
@@ -52,10 +51,10 @@
 
     <h1>Gender and age prediction by computer vision</h1>
     <div>
-        <img src="{{ url_for('camera_import') }}" width="50%"/>
+        <img src="{{ url_for('send_picture') }}" width="50%"/>
     </div>
-    <form method="GET" action="{{ url_for('display_picture') }}">
-		<input type="submit" value="Take a snapshot">
+    <form method="GET" action="{{ url_for('camera_display') }}">
+		<input type="submit" value="Return to the menu">
 	</form>
 
     </body>
